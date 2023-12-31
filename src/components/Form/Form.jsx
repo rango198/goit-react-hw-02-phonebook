@@ -1,5 +1,8 @@
 import { Component } from 'react';
 import { BtnPhone, ContactForm, Input, LabelInt } from './Form.styled';
+import { FaPhoneAlt } from 'react-icons/fa';
+import { GiGingerbreadMan } from 'react-icons/gi';
+import { AiOutlineUserAdd } from 'react-icons/ai';
 
 export class Form extends Component {
   state = {
@@ -27,7 +30,9 @@ export class Form extends Component {
       <div>
         <ContactForm onSubmit={this.handelSubmit}>
           <LabelInt>
-            Name
+            <div>
+              <GiGingerbreadMan /> Name
+            </div>
             <Input
               name="name"
               type="text"
@@ -39,7 +44,9 @@ export class Form extends Component {
             />
           </LabelInt>
           <LabelInt>
-            Number
+            <div>
+              <FaPhoneAlt /> Number
+            </div>
             <Input
               name="number"
               type="tel"
@@ -51,7 +58,9 @@ export class Form extends Component {
             />
           </LabelInt>
 
-          <BtnPhone type="submit">Add contact</BtnPhone>
+          <BtnPhone type="submit">
+            Add contact <AiOutlineUserAdd />
+          </BtnPhone>
         </ContactForm>
       </div>
     );

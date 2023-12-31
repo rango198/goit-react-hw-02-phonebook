@@ -1,31 +1,21 @@
 import styled from '@emotion/styled';
 
-export const ContactForm = styled.form`
+export const List = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 15px;
-`;
-export const Input = styled.input`
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 5px;
-  border: none;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  height: 200px;
 `;
 
-export const LabelInt = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-`;
-
-export const BtnPhone = styled.button`
+export const BtnList = styled.button`
   cursor: pointer;
   border: none;
+  border-radius: 10px;
   background-color: #e0b43d;
-  border-radius: 7px;
   color: white;
-  padding: 5px 10px;
+  margin-left: 10px;
 
   transition: all 0.2s ease-in-out;
   box-shadow: rgb(0 0 0 / 24%) 10px 10px 5px 0px;

@@ -9,3 +9,9 @@ export const Container = styled.div`
   border: 1px solid #a2a2a2;
   background-color: #bef0a6;
 `;
+export const ContactsWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 15px;
+`;

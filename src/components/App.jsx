@@ -1,22 +1,11 @@
 import { Component } from 'react';
 import initialContacts from './contacts.json';
 import { Form } from './Form/Form';
-import { ToastContainer, toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactsList';
 import { Filter } from './filter/filter';
-import { Container } from './App.styled';
-
-const notifyOptions = {
-  position: 'bottom-left',
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  theme: 'colored',
-};
+import { ContactsWrapper, Container } from './App.styled';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export class App extends Component {
   state = {
@@ -34,7 +23,12 @@ export class App extends Component {
           newContact.name.toLowerCase().trim() ||
         contact.number.trim() === newContact.number.trim()
     ).length
-      ? toast.error(`${newContact.name}: is already in contacts`, notifyOptions)
+      ? Notify.warning(`${newContact.name}: is already in contacts`, {
+          width: '400px',
+          position: 'center-center',
+          timeout: 3000,
+          fontSize: '20px',
+        })
       : this.setState(prevState => {
           return {
             contacts: [contactWithId, ...prevState.contacts],
@@ -69,13 +63,14 @@ export class App extends Component {
       <Container>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContacts} />
-        <h2>Contacts</h2>
-        <Filter onChangeFilter={this.onChangeFilter} filter={filter} />
-        <ContactsList
-          contacts={visibleContacts}
-          onDelete={this.onDeleteContacts}
-        />
-        <ToastContainer />
+        <ContactsWrapper>
+          <h2>Contacts</h2>
+          <Filter onChangeFilter={this.onChangeFilter} filter={filter} />
+          <ContactsList
+            contacts={visibleContacts}
+            onDelete={this.onDeleteContacts}
+          />
+        </ContactsWrapper>
       </Container>
     );
   }
