@@ -40,6 +40,11 @@ export class App extends Component {
         });
   };
 
+  onChangeFilter = event => {
+    const { value } = event.currentTarget;
+    this.setState({ filter: value });
+  };
+
   filterByName = () => {
     const { contacts, filter } = this.state;
     const lowerFilter = filter.toLowerCase();
@@ -56,11 +61,21 @@ export class App extends Component {
 
   render() {
     const visibleContacts = this.filterByName();
+    const { filter } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContacts} />
         <h2>Contacts</h2>
+        <div>
+          <label htmlFor="">Find contacts by name</label>
+          <input
+            type="text"
+            name="filter"
+            placeholder="search"
+            onChange={this.onChangeFilter}
+          />
+        </div>
         <ContactsList
           contacts={visibleContacts}
           onDelete={this.onDeleteContacts}
