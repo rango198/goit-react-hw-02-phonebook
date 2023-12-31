@@ -4,6 +4,8 @@ import { Form } from './Form/Form';
 import { ToastContainer, toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 import { ContactsList } from './ContactsList/ContactsList';
+import { Filter } from './filter/filter';
+import { Container } from './App.styled';
 
 const notifyOptions = {
   position: 'bottom-left',
@@ -62,26 +64,19 @@ export class App extends Component {
   render() {
     const visibleContacts = this.filterByName();
     const { filter } = this.state;
+
     return (
-      <div>
+      <Container>
         <h1>Phonebook</h1>
         <Form onSubmit={this.addContacts} />
         <h2>Contacts</h2>
-        <div>
-          <label htmlFor="">Find contacts by name</label>
-          <input
-            type="text"
-            name="filter"
-            placeholder="search"
-            onChange={this.onChangeFilter}
-          />
-        </div>
+        <Filter onChangeFilter={this.onChangeFilter} filter={filter} />
         <ContactsList
           contacts={visibleContacts}
           onDelete={this.onDeleteContacts}
         />
         <ToastContainer />
-      </div>
+      </Container>
     );
   }
 }
